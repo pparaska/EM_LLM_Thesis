@@ -1,0 +1,15 @@
+/c/Users/infolab01/AppData/Local/Programs/Python/Python310/python.exe -m venv .venv
+$ source .venv/Scripts/activate
+$ python -m pip install --upgrade pip
+$ pip install -r requirements.txt
+$ pip install -e .
+$ pip uninstall -y torch torchvision torchaudio
+$ pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+$ python - << 'EOF'
+import torch
+print("CUDA available:", torch.cuda.is_available())
+print("GPU name:", torch.cuda.get_device_name())
+EOF
+
+$ bash scripts/run.sh -m mistral -b long-bench -d samsum -o True
